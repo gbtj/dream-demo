@@ -1,9 +1,5 @@
 FROM java:8
 
-COPY *.jar /app.jar
-
 CMD ["--server.port=8080"]
 
-EXPOSE 8080
-
-ENTRYPOINT ["java","-jar", "/app.jar"]
+ENTRYPOINT ["java","-jar", "/root/demoWorkSpace/code/dream-demo/target/dream-demo-1.0.0.jar"]
