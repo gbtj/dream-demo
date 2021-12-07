@@ -3,8 +3,6 @@ package com.api.dao;
 import com.model.User;
 import org.apache.ibatis.annotations.*;
 
-import java.util.List;
-
 @Mapper
 public interface UserDao {
 
@@ -15,7 +13,7 @@ public interface UserDao {
     })
 
     @Select("SELECT * FROM user WHERE id = #{id}")
-    List<User> get(String id);
+    User get(String id);
 
     @Insert("INSERT INTO user (id, name, age) VALUES (#{id}, #{name}, #{age})")
     void insert(User user);

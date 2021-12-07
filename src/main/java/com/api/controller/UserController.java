@@ -13,7 +13,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/user/{id}",produces = "application/json;charset=UTF-8")
-    public Object getUserById(@PathVariable(value = "id") String id) {
+    public User getUserById(@PathVariable(value = "id") String id) {
         return userService.get(id);
     }
 
