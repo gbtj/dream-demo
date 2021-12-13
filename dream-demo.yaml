@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: <API_NAME>
+  name: <API_NAME>-<API_VERSION>
   namespace: dev
   labels:
-    app: <API_NAME>
+    app: <API_NAME>-<API_VERSION>
 spec:
   type: ClusterIP #NodePort
   ports:
@@ -13,28 +13,28 @@ spec:
     #nodePort: 30090 #虚拟机的转发端口
     protocol: TCP
   selector:
-    app: <API_NAME>
+    app: <API_NAME>-<API_VERSION>
 ---
 apiVersion: apps/v1
 kind: Deployment #对象类型
 metadata:
-  name: <API_NAME> #名称
+  name: <API_NAME>-<API_VERSION> #名称
   namespace: dev
   labels:
-    app: <API_NAME> #标注 
+    app: <API_NAME>-<API_VERSION> #标注 
 spec:
   replicas: 1 #运行容器的副本数，修改这里可以快速修改分布式节点数量
   selector:
     matchLabels:
-      app: <API_NAME>
+      app: <API_NAME>-<API_VERSION>
   template:
     metadata:
       labels:
-        app: <API_NAME>
+        app: <API_NAME>-<API_VERSION>
     spec:
       containers: #docker容器的配置
-      - name: <API_NAME>
-        image: registry.cn-hangzhou.aliyuncs.com/carl_zh/<API_NAME>:<BUILD_TAG> # pull镜像的地址 ip:prot/dir/images:tag
+      - name: <API_NAME>-<API_VERSION>
+        image: registry.cn-hangzhou.aliyuncs.com/carl_zh/<API_NAME>-<API_VERSION>:<BUILD_TAG> # pull镜像的地址 ip:prot/dir/images:tag
         imagePullPolicy: IfNotPresent #pull镜像时机/Always
         ports:
         - containerPort: 8080 #容器对外开放端口
