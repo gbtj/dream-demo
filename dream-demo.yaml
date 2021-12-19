@@ -8,7 +8,7 @@ metadata:
 spec:
   type: ClusterIP #NodePort
   ports:
-  - port: 8080 #service对外开放端口
+  - port: 80 #service对外开放端口
     targetPort: 8080 #pod的端口
     #nodePort: 30090 #虚拟机的转发端口
     protocol: TCP
